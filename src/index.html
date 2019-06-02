@@ -1,0 +1,89 @@
+<!Document html>
+<head>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div class="result">0</div>
+    <ul>
+        <li>AC</li>
+        <li>+/-</li>
+        <li>%</li>
+        <li class="has-background">÷</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li class="has-background">×</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li class="has-background">-</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li class="has-background">+</li>
+        <li class="zero">0</li>
+        <li>.</li>
+        <li class="has-background">=</li>
+    </ul>
+
+<script>
+    var panelValue = {
+            value1: 0,
+            symbol: "",
+            value2: 0
+    };
+    var resultValue;
+    $("ul").on('click', "li", function () {
+        var currentValue = event.target.innerHTML;
+        if (currentValue == "AC") {
+            panelValue = {
+                value1: 0,
+                symbol: "",
+                value2: 0
+            };
+            $(".result").text("0");
+        } else if (["+", "-", "×", "÷"].includes(currentValue)) {
+            if (panelValue.value1 !== 0) {
+                panelValue.symbol = currentValue;
+            }
+            $(".result").text(0);
+        } else if (currentValue >= 0 || currentValue <= 9 ) {
+            if (panelValue.symbol !== "") {
+                if (panelValue.value2 === 0 ){
+                    panelValue.value2 = currentValue;
+                } else {
+                    panelValue.value2 = ( Number(panelValue.value2*10) + Number(currentValue) );
+                };
+            $(".result").text(panelValue.value2);
+            } else {
+                if (panelValue.value1 === 0 ){
+                    panelValue.value1 = currentValue;
+                } else {
+                    panelValue.value1 = ( Number(panelValue.value1*10) + Number(currentValue) );
+                };
+            $(".result").text(panelValue.value1);
+            }
+        } else if (currentValue === "=") {
+            if (panelValue.symbol !== "") {
+                switch(panelValue.symbol) {
+                    case "+":
+                        resultValue = Number(panelValue.value1) + Number(panelValue.value2);
+                        break;
+                    case "-":
+                        resultValue = Number(panelValue.value1) - Number(panelValue.value2);
+                        break;
+                    case "×":
+                        resultValue = Number(panelValue.value1) * Number(panelValue.value2);
+                        break;
+                    case "÷":
+                        resultValue = Number(panelValue.value1) / Number(panelValue.value2);
+                        break;
+                }
+                $(".result").text(resultValue);
+            }
+        }
+    })
+</script>
+</body>
+<html>
