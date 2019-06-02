@@ -1,0 +1,50 @@
+
+div {
+    width: 302px;
+    height: 60px;
+    padding: 0;
+    margin: 0;
+    font-size: 36px;
+    text-align: right;
+    padding-top: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    color: #fff;
+    background: black;
+} 
+
+ul {
+    width: 302px;
+    height: 302px;
+    padding: 0; 
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+li {
+    width: 75px;
+    height: 60px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    box-sizing: border-box;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+li.zero {
+    width: 150px;
+}
+
+li.has-background {
+    background: #ddd;
+}
+
+li:visited {
+    background:　red;
+}
